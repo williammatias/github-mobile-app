@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native';
+import { getRepos } from '../Utils/api';
 
 export class DashboardScreen extends React.Component {
 
@@ -27,9 +28,25 @@ export class DashboardScreen extends React.Component {
     }
 
     goToProfile(){
-
+        this.props.navigation.navigate(
+            'Profile',{
+                userInfo: this.props.navigation.state.params.userInfo,
+                title: 'Profile Page'
+            });
     }
     goToRepos(){
+        let userInfo = this.props.navigation.state.params.userInfo;
+        console.log(userInfo)
+        getRepos(userInfo.login)
+            .then((res) => {
+                console.log(res)
+                this.props.navigation.navigate(
+                    'Repositories',{
+                        userInfo: userInfo,
+                        repos: res,
+                        title: 'Repositories Page'
+                    });
+            });
 
     }
     goToNotes(){
