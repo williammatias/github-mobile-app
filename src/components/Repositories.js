@@ -41,7 +41,11 @@ export default class RepositoriesScreen extends Component {
     });
 
     openPage(url) {
-        console.log('open url', url);
+        this.props.navigation.navigate(
+            'WebView',{
+                url: url,
+                title: 'Web View'
+            });
     }
     render() {
         const {navigation} = this.props;
@@ -74,8 +78,8 @@ export default class RepositoriesScreen extends Component {
         )
     }
 }
-
-RepositoriesScreen.propTypes = {
-    userInfo: PropTypes.object.isRequired,
-    repos: PropTypes.array.isRequired
-};
+//
+// RepositoriesScreen.propTypes = {
+//     userInfo: PropTypes.object.isRequired,
+//     repos: PropTypes.array.isRequired
+// };

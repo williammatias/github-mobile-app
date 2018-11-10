@@ -36,7 +36,6 @@ export class DashboardScreen extends React.Component {
     }
     goToRepos(){
         let userInfo = this.props.navigation.state.params.userInfo;
-        console.log(userInfo)
         getRepos(userInfo.login)
             .then((res) => {
                 console.log(res)
